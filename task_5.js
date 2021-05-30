@@ -4,8 +4,7 @@ class Device {
         this.power = power;
         this.voltage = voltage;
         this.isPluggedIn = false;
-        this.isTurnedOn = false,
-        this.specifications = {};
+        this.isTurnedOn = false;
     }
 
     plugIn_unplug() {
