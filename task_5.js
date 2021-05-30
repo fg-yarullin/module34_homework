@@ -34,8 +34,8 @@ class Device {
     }
 
     turn_On_Off() {
-        this.isPluggedIn = Math.random() < 0.5;
-        this.isTurnedOn = this.isPluggedIn && Math.random() < 0.5;
+        this.isPluggedIn = Math.random() < 0.7;
+        this.isTurnedOn = this.isPluggedIn && Math.random() < 0.7;
     }
 }
 
@@ -47,30 +47,42 @@ const powerConsumption = function (devicesArray) {
     console.log(`\nPower consumption of all turned on devices is ${sum} watt`)
 }
 
-const deskLamp = new Device('Desk Lamp',12, 220);
-deskLamp.specifications = {
-    adjustable: true,
-    style: 'Traditional Lamp',
-    lightBulbStyle: 'led'
+class DeskLamp extends Device {
+    constructor(name, power, voltage, colorTemperature) {
+        super(name, power, voltage);
+        this.specifications = {
+            adjustable: true,
+            style: 'Traditional Lamp',
+            lightBulbStyle: 'led'
+        }
+        this.colorTemperature = colorTemperature;
+    }   
+    setColorTemperature(t) {
+        this.colorTemperature = t;
+    };
 }
-deskLamp.colorTemperature = 4000;
-deskLamp.setColorTemperature = function(t) {
-    this.colorTemperature = t;
-};
 
-const сomputer = new Device('Desktop Computer', 400, 220);
-сomputer.specifications = {
-    cpu: "10th-generation Intel Core i9",
-    graphics: "NVIDIA GeForce RTX 3070 Super",
-    ram: "32GB DDR4 2933Mhz", 
-    storage: "2TB M.2 PCIe NVME SSD + 2TB SATA 7200RPM HDD"
-};
-сomputer.reset = function() {
-    // reset proccess
-};
-сomputer.suspend = function() {
-    this.power = 50;
-};
+class Computer extends Device {
+    constructor(name, power, voltage, colorTemperature) {
+        super(name, power, voltage);
+        this.specifications = {
+            cpu: "10th-generation Intel Core i9",
+            graphics: "NVIDIA GeForce RTX 3070 Super",
+            ram: "32GB DDR4 2933Mhz", 
+            storage: "2TB M.2 PCIe NVME SSD + 2TB SATA 7200RPM HDD"
+        }
+    }
+    reset() {
+        // reset proccess
+    };
+    suspend() {
+        this.power = 50;
+    };
+}
+
+const deskLamp = new DeskLamp('Desk Lamp',12, 220, 3000);
+
+const сomputer = new Computer('Desktop Computer', 400, 220);
 
 сomputer.turn_On_Off();
 deskLamp.turn_On_Off();
