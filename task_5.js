@@ -62,7 +62,7 @@ class DeskLamp extends Device {
 }
 
 class Computer extends Device {
-    constructor(name, power, voltage, colorTemperature) {
+    constructor(name, power, voltage) {
         super(name, power, voltage);
         this.specifications = {
             cpu: "10th-generation Intel Core i9",
